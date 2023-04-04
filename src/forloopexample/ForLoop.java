@@ -25,12 +25,13 @@ public class ForLoop {
 			{
 				System.out.println("Enter the PIN");
 				enteredPIN = sc.nextInt();
-				System.out.println("Enter the amount to be withdrawn:");
-				withdrawAmount = sc.nextInt();
+				
 				
 				if (actualPIN == enteredPIN &&
 						actualamount > withdrawAmount) {
 					System.out.println("Entered PIN is correct");
+					System.out.println("Enter the amount to be withdrawn:");
+					withdrawAmount = sc.nextInt();
 					System.out.println("Enter the amount to be withdrawn:");
 					withdrawAmount = sc.nextInt();
 					

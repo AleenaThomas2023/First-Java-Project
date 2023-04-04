@@ -6,8 +6,8 @@ public class Mainchoclate {
 		// TODO Auto-generated method stub
 
 		ChoclateCount choclate =new ChoclateCount();
-		choclate.maximumchoclate=63;		
-		choclate.calculatechoclatecount();
+				
+	choclate.calculatechoclatecount();
 		
 	}
 

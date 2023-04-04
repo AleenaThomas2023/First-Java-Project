@@ -2,8 +2,8 @@ package password;
 import java.util.Scanner;
 public class PASSWORDMATCH {
 	
-	String username="pivotAdmin";
-	String password="Admin123";
+	String actualusername="pivotAdmin";
+	String actualpassword="Admin123";
 	int counter;
 	
 	void findpasswordmatch()  {
@@ -14,24 +14,23 @@ public class PASSWORDMATCH {
 		
 		System.out.println("please enter your username and password");
 		
-		username=SC.nextLine();
-		password=SC.nextLine();
-		
-		if (username == password) {
+		String username=SC.nextLine();
+		String password=SC.nextLine();
+		if (username.equals(actualusername) &&  password.equals(actualpassword)) {
 			System.out.println("You are logged in to the application");
 		
 			break;
 		}
-	
-		else {
+	else {
 		
 		System.out.println("Incorrect User id or password.Try again");
 		
-		}
-		while (counter > 3) {
+		
+		if  (counter>3) {
 			
 		System.out.println("Account locked");	
 		}
 	}
+}
 }
 	}

@@ -3,41 +3,21 @@ package choclate;
 public class ChoclateCount {
 
 	
-int existingchoclate=27;
-int maximumchoclate;
-int counter;
+
+int existingchoclate=23;
+int maximumchoclate=63;
 
 void calculatechoclatecount()  {
 	
-for (
-counter=1;
-		
-	counter<=(maximumchoclate-existingchoclate/5);
-     counter +=5
-    		)	
-
-
+	while(existingchoclate<=63) {
 	
+	existingchoclate+=5;
 	
-	if (maximumchoclate<63) {
-		System.out.println("add more choclates");
+	System.out.println("choclates inside the box"+ existingchoclate);
 	}
-
-	else if (  maximumchoclate==63)  {
-	
-	
-	System.out.println("choclatebox is full");
-	
-	break;
+if (existingchoclate>63) {
+	System.out.println("choclates box is already full");
+}
 }
 	
-
- else
-	
-	System.out.println("choclate box is already full");
-		
-	}	
-
 }
-
-

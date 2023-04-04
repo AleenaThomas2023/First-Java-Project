@@ -3,38 +3,30 @@ package waterTank;
 public class WaterTankCapacity {
 
 	int bucketcapacity =10;
-	int maximumcapacity;
-	int counter;
-
+	int maximumcapacity=100;
+	int currentlevel=5;
+	void watertanklevel()  {
 	
-	
-	void findwatercapacity()  {
+	while (currentlevel <= 90)  {
 		
-		for (counter=1;
-			
-			counter<=10;
-			
-			counter++) {
-			
-			System.out.println("Enter capacity" );
-	
-		if (maximumcapacity<100) {
-			System.out.println("fill more water");
-		}
-			
-		else if (maximumcapacity==100)   {
-			System.out.println("maximum capacity of a tank reached ");
-			
-		break;	
-			 }
-		
-	else 
-		System.out.println("tank is overflow");	
+System.out.println("water level is:"+currentlevel);
 	}
 	
-
-
+	
+	
+	if (currentlevel > 90 && currentlevel < 100) {
+		
+		int maxlevel  =(maximumcapacity-currentlevel )+currentlevel;
+	System.out.println("water level is rached max"+maxlevel);
+		
+	}
+	currentlevel+=10;
+	if (currentlevel>100) {
+	
+		System.out.println("tank will overflow");	
 	}
 	
+	
+}
 	
 }
