@@ -1,29 +1,27 @@
 package bank;
 
-public class BankOperations {
-	
-private double balance;
+import java.util.Scanner;
 
-public BankOperations(double balance) {
-	
-	this.balance = balance;
-}
+public abstract class BankOperations {
 
-public double getBalance() {
-	return balance;
-}
+	protected double balance; // current balance of the bank
 
-public void deposit  (double amount)  {
-	
-	balance+=amount;
+	public BankOperations(double balance) {        //constructor
+		this.balance = balance;
+
 	}
 
-public void withdraw(double amount)  { 
-	
-	
-	balance-=amount;
-}	
-	
-	
+	public double getBalance() {
+		return balance;
+	}
 
+	public void deposit(double amount) {
+		balance += amount;
+	}
+
+	public void withdraw(double amount) {
+		balance -= amount;
+	}
+
+	public abstract void changePinPassword(Scanner sc);
 }

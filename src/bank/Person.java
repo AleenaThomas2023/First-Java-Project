@@ -1,33 +1,30 @@
 package bank;
 
+import java.util.Scanner;
+
 public class Person {
 
 	private String nameOfAccountHolder;
-
-	private int accountnumber;
-
+	private String accountnumber;
 	private int pin;
-
 	private String password;
+	private double balance;
+	private Atm bank;
 
-	private Double balance;
-	BankOperations bank;
-
-	public Person(String nameOfAccountHolder, int accountnumber, int pin, String password, double balance) {
-
+	public Person(String nameOfAccountHolder, String accountnumber, int pin, String password, double balance) {
 		this.nameOfAccountHolder = nameOfAccountHolder;
 		this.accountnumber = accountnumber;
 		this.pin = pin;
 		this.password = password;
 		this.balance = balance;
-		this.bank = new BankOperations(balance);
+		this.bank = new Atm(balance, pin);
 	}
 
 	public String getNameOfAccountHolder() {
 		return nameOfAccountHolder;
 	}
 
-	public int getAccountnumber() {
+	public String getAccountnumber() {
 		return accountnumber;
 	}
 
@@ -41,11 +38,9 @@ public class Person {
 
 	public boolean validatePin(int pin) {
 		return this.pin == pin;
-
 	}
 
 	public boolean validatePassword(String Password) {
-
 		return this.password.equals(Password);
 	}
 
@@ -58,8 +53,10 @@ public class Person {
 	}
 
 	public void withdraw(double amount) {
-
 		bank.withdraw(amount);
 	}
 
+	public void changePin(Scanner sc) {
+		bank.changePinPassword(sc);
+	}
 }
