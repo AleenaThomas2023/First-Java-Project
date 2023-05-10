@@ -3,28 +3,35 @@ package bank;
 import java.util.Scanner;
 
 public class MainBank {
-
 	public static void main(String[] args) {
-		double balance = 5000;
-		int pin = 1234;
-		String password = "Canada2023";
-		Person thomasAccount = new Person("John Thomas", "1234567890", pin, password, balance);
+
+		
+
+		PersonAccount JohnAccount= new PersonAccount("John Thomas", "1234567890", 1234, "Canada2023", 5000);
+		PersonAccount LovelyAccount= new PersonAccount("Lovely Thomas", "0987654321", 4321, "USA2023", 6000);
+		PersonAccount JonasAccount= new PersonAccount("Jonas Baby", "1112223333", 5678, "Korea2023", 7000);
+		PersonAccount EmilyAccount= new PersonAccount("EmilY Emily", "4445556666", 8765, "Japan2023", 8000);
+		PersonAccount ThomasAccount= new PersonAccount("Thomas Thomas", "7778889999", 9876, "China2023", 9000);
 
 		Scanner SC = new Scanner(System.in);
 
 		System.out.println("Enter 1 for ATM, 2 for Online Banking: ");
 		int choice = SC.nextInt();
 
+		
+
+		
+	
 		boolean validated = false;
 
 		if (choice == 1) {
 			System.out.print("Enter PIN: ");
 			int enteredPin = SC.nextInt();
-			validated = thomasAccount.validatePin(enteredPin);
+			validated =ThomasAccount.validatePin(ThomasAccount, enteredPin);
 		} else if (choice == 2) {
 			System.out.print("Enter password: ");
 			String enteredPassword = SC.next();
-			validated = thomasAccount.validatePassword(enteredPassword);
+			validated = ThomasAccount.validatepassword(ThomasAccount, enteredPassword);
 		} else {
 			System.out.println("Invalid choice!");
 			SC.close();
@@ -39,9 +46,9 @@ public class MainBank {
 		BankOperations bank = null;
 
 		if (choice == 1) {
-			bank = new Atm(balance, pin);
+			bank = new Atm();
 		} else {
-			bank = new OnlineBanking(balance, password);
+			bank = new OnlineBanking();
 		}
 
 		System.out.println("Enter 1 for deposit, 2 for withdraw, 3 to change PIN/Password: ");
@@ -51,22 +58,18 @@ public class MainBank {
 		case 1:
 			System.out.print("Enter amount to deposit: ");
 			double depositAmount = SC.nextDouble();
-			bank.deposit(depositAmount);
-			System.out.println("Deposit successful. New balance: " + bank.getBalance());
+			bank.depositMoney(ThomasAccount, 500);
 			break;
 
 		case 2:
 			System.out.print("Enter amount to withdraw: ");
 			double withdrawAmount = SC.nextDouble();
-			if (withdrawAmount > bank.getBalance()) {
-				System.out.println("Insufficient balance!");
+			bank.withdrawMoney(ThomasAccount, withdrawAmount);
 				break;
-			}
-			bank.withdraw(withdrawAmount);
-			System.out.println("Withdrawal successful. New balance: " + bank.getBalance());
-			break;
+			
+			
 		case 3:
-			bank.changePinPassword(SC);
+			bank.changePinPassword(ThomasAccount);
 			break;
 		default:
 			System.out.println("Invalid choice!");

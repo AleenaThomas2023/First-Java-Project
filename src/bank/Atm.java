@@ -3,44 +3,58 @@ package bank;
 import java.util.Scanner;
 
 public class Atm extends BankOperations {
-	private int pin;
+	public boolean validatePin(PersonAccount account, int enteredPin) {
 
-	public Atm(double balance, int pin) {
-		super(balance); // constructor
-		this.pin = pin;
-	}
-
-	public boolean validatePin(int Pin) {
-
-		return this.pin == Pin;
+		return account.getPin() == enteredPin ;
 
 	}
 
 	@Override
-	public void deposit(double amount) {
-		balance += amount;
+	public void withdrawMoney(PersonAccount account, double moneyToBeWithdrawn) {
+
+		if (moneyToBeWithdrawn < account.getBalance()) {
+			System.out.println("Please collect your money : " + moneyToBeWithdrawn);
+
+			account.setBalance(account.getBalance() - moneyToBeWithdrawn);
+
+		} else {
+			System.out.println("Sorry! insufficient balane");
+		}
+
 	}
 
 	@Override
-	public void withdraw(double amount) {
-		balance -= amount;
+	public void depositMoney(PersonAccount account, double moneytoBeDeposit) {
+		double deposit = moneytoBeDeposit + account.getBalance();
+		System.out.println("money has deposited " + moneytoBeDeposit);
+		account.setBalance(account.getBalance() + moneytoBeDeposit);
 	}
 
 	@Override
-	public void changePinPassword(Scanner sc) {
-		System.out.print("Enter new PIN: ");
+	public void viewBalance(PersonAccount account) {
+		System.out.println("The balance of the account : " + account.getBalance());
+	}
+
+	Scanner sc = new Scanner(System.in);
+
+	@Override
+	public void changePinPassword(PersonAccount account) {
+		System.out.println("Enter new ATM pin number");
 		int newPin = sc.nextInt();
-		if (newPin == pin) {
-			System.out.println("New PIN cannot be the same as the old PIN.");
-			return;
-		}
 
-		if (newPin < 1000) {
-			System.out.println("PIN must be at least 4 digits long.");
-			return;
-		}
+		while (newPin == account.getPin() || (String.valueOf(newPin).length() < 4)) {
 
-		pin = newPin;
-		System.out.println("PIN updated successfully.");
+			if (newPin == account.getPin()) {
+				System.out.println("Entered pin is same as old pin. Please use different pin");
+			}
+			if (String.valueOf(newPin).length() < 4) {
+				System.out.println("Entered pin should have atleast 4 characters. Please try again!");
+			}
+			System.out.println("Enter new ATM pin number");
+			newPin = sc.nextInt();
+
+		}
+		System.out.println("Updated pin is : " + newPin);
+
 	}
 }

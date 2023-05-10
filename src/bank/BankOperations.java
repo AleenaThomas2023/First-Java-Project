@@ -1,27 +1,31 @@
 package bank;
 
-import java.util.Scanner;
+
 
 public abstract class BankOperations {
 
-	protected double balance; // current balance of the bank
+	public void withdrawMoney(PersonAccount account, double moneyToBeWithdrawn) {
 
-	public BankOperations(double balance) {        //constructor
-		this.balance = balance;
+		if (moneyToBeWithdrawn < account.getBalance()) {
+			System.out.println("Please collect your money : " + moneyToBeWithdrawn);
+
+			account.setBalance(account.getBalance() - moneyToBeWithdrawn);
+
+		} else {
+			System.out.println("Sorry! insufficient balane");
+		}
 
 	}
 
-	public double getBalance() {
-		return balance;
+	public void depositMoney(PersonAccount account, double moneytoBeDeposit) {
+		double deposit = moneytoBeDeposit + account.getBalance();
+		System.out.println("money has deposited: " + moneytoBeDeposit);
+		account.setBalance(account.getBalance() + moneytoBeDeposit);
 	}
 
-	public void deposit(double amount) {
-		balance += amount;
+	public void viewBalance(PersonAccount account) {
+		System.out.println("The balance of the account : " + account.getBalance());
 	}
 
-	public void withdraw(double amount) {
-		balance -= amount;
-	}
-
-	public abstract void changePinPassword(Scanner sc);
+	public abstract void changePinPassword(PersonAccount account);
 }
